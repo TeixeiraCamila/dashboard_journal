@@ -1,0 +1,141 @@
+:root {
+  --color-bg: #e8e4f0;
+  --color-surface: #f5f3f8;
+  --color-primary: #8b5cf6;
+  --color-secondary: #9878d5;
+  --color-accent-pink: #f472b6;
+  --color-accent-mint: #34d399;
+  --color-accent-yellow: #fbbf24;
+  --radius-lg: 20px;
+  --radius-md: 12px;
+  --shadow-soft: 0 4px 20px rgba(139, 92, 246, 0.1);
+
+  --shadow-3d:
+    rgba(0, 0, 0, 0.4) 0px 2px 4px, rgba(0, 0, 0, 0.3) 0px 7px 13px -3px,
+    rgba(0, 0, 0, 0.2) 0px -3px 0px inset;
+}
+
+* {
+  box-sizing: border-box;
+  margin: 0;
+  padding: 0;
+}
+
+body {
+  font-family: "Segoe UI", system-ui, sans-serif;
+  background: var(--color-bg);
+  color: #374151;
+}
+
+.dashboard {
+  display: grid;
+  grid-template-columns: 220px 1fr;
+  min-height: 100vh;
+  margin: 1rem;
+}
+
+.sidebar {
+  background: linear-gradient(
+    180deg,
+    var(--color-secondary) 0%,
+    var(--color-primary) 100%
+  );
+  padding: 24px 16px;
+  color: white;
+  border-radius: var(--radius-md);
+}
+
+.sidebar__title {
+  font-size: 20px;
+  font-weight: 700;
+  margin-bottom: 32px;
+}
+
+.sidebar__nav {
+  display: flex;
+  flex-direction: column;
+  gap: 4px;
+}
+
+.sidebar__link {
+  color: rgba(255, 255, 255, 0.8);
+  text-decoration: none;
+  padding: 12px 16px;
+  border-radius: var(--radius-md);
+  transition: background 0.2s;
+}
+
+.sidebar__link--active {
+  background: rgba(255, 255, 255, 0.2);
+  color: white;
+}
+
+.sidebar__link:hover {
+  background: rgba(255, 255, 255, 0.1);
+}
+
+.main {
+  padding: 32px;
+  overflow-y: auto;
+  background-color: var(--color-surface);
+  border-radius: var(--radius-md);
+}
+
+.main__header {
+  margin-bottom: 32px;
+}
+
+.main__title {
+  font-size: 28px;
+  font-weight: 700;
+  color: #1f2937;
+}
+
+.stats-grid {
+  display: grid;
+  grid-template-columns: repeat(4, 1fr);
+  gap: 20px;
+  margin-bottom: 32px;
+}
+
+.charts-grid {
+  display: grid;
+  grid-template-columns: repeat(2, 1fr);
+  gap: 24px;
+}
+
+.chart-card {
+  background: white;
+  border-radius: var(--radius-lg);
+  padding: 24px;
+  box-shadow: var(--shadow-3d);
+}
+
+.chart-card--full {
+  grid-column: span 2;
+}
+
+.chart-card__title {
+  font-size: 18px;
+  font-weight: 600;
+  margin-bottom: 16px;
+  color: #374151;
+}
+
+.loading {
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  min-height: 100vh;
+  font-size: 18px;
+  color: var(--color-primary);
+}
+
+.error {
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  min-height: 100vh;
+  font-size: 18px;
+  color: #ef4444;
+}
