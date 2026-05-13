@@ -42,15 +42,28 @@ function Dashboard() {
   }
 
   const books = booksData?.data || [];
-  const total = books.length;
-  const readCount = books.filter((b) => b.status === "Read").length;
+  const readBooks = books.filter((b) => b.status === "Read");
   const readingCount = books.filter((b) => b.status === "Reading").length;
   const toReadCount = books.filter((b) => b.status === "To be read").length;
+
+  const totalPagesRead = readBooks.reduce(
+    (sum, b) => sum + (b.totalPages ?? 0),
+    0,
+  );
+
+  const readByYear = readBooks.reduce((acc, book) => {
+    book.wasReadIn?.forEach(year => {
+      if (year && year !== "IDK") {
+        acc[year] = (acc[year] || 0) + 1;
+      }
+    });
+    return acc;
+  }, {} as Record<string, number>);
 
   return (
     <div className="dashboard">
       <aside className="sidebar">
-        <h1 className="sidebar__title">📚 Book Journal</h1>
+        <h1 className="sidebar__title"> Book Journal</h1>
         <nav className="sidebar__nav">
           <a href="#" className="sidebar__link sidebar__link--active">
             Dashboard
@@ -71,15 +84,15 @@ function Dashboard() {
 
         <div className="stats-grid">
           <StatCard
-            icon={booksImg}
-            label="Total de Livros"
-            value={total}
+            icon={checkImg}
+            label="Total de páginas lidas"
+            value={totalPagesRead}
             color="#9B7DD5"
           />
           <StatCard
-            icon={checkImg}
-            label="Lidos"
-            value={readCount}
+            icon={booksImg}
+            label="Total de livros"
+            value={readBooks.length}
             color="#F17D77"
           />
           <StatCard

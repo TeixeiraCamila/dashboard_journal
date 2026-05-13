@@ -35,7 +35,7 @@ export function RatingChart({ books, options }: RatingChartProps) {
       <h3 className="chart-card__title">Distribuição de Notas</h3>
       <BarChart
         dataset={data}
-        xAxis={[{ scaleType: 'band', dataKey: 'rate' }]}
+        xAxis={[{ scaleType: 'band', dataKey: 'rate', categoryGapRatio: 0.2 }]}
         series={[{ dataKey: 'count', color: '#8B5CF6' }]}
         width={400}
         height={250}
@@ -43,4 +43,6 @@ export function RatingChart({ books, options }: RatingChartProps) {
       />
     </div>
   );
+
+
 }

@@ -1,73 +1,70 @@
-# React + TypeScript + Vite
+# Book Journal Dashboard
 
-This template provides a minimal setup to get React working in Vite with HMR and some ESLint rules.
+Dashboard de visualização de estatísticas de leitura, consumindo dados da API `/api/books`.
 
-Currently, two official plugins are available:
+## Stack
 
-- [@vitejs/plugin-react](https://github.com/vitejs/vite-plugin-react/blob/main/packages/plugin-react) uses [Oxc](https://oxc.rs)
-- [@vitejs/plugin-react-swc](https://github.com/vitejs/vite-plugin-react/blob/main/packages/plugin-react-swc) uses [SWC](https://swc.rs/)
+- **React 18** com TypeScript
+- **TanStack Query** para data fetching
+- **MUI X Charts** para visualizações
+- **Vite** para build
 
-## React Compiler
+## Features Atuais
 
-The React Compiler is not enabled on this template because of its impact on dev & build performances. To add it, see [this documentation](https://react.dev/learn/react-compiler/installation).
+- [x] Cards de estatísticas (páginas lidas, total livros, lendo, para ler)
+- [x] Gráfico de status (Pizza)
+- [x] Gráfico de notas (Barras)
+- [x] Gráfico de livros por ano (Linha)
 
-## Expanding the ESLint configuration
+## Features Planejadas
 
-If you are developing a production application, we recommend updating the configuration to enable type-aware lint rules:
+### 📊 Análises
+- [ ] Top 10 autores mais lidos
+- [ ] Distribuição de gêneros
+- [ ] Média de páginas por livro
+- [ ] livros lidos por mês
 
-```js
-export default defineConfig([
-  globalIgnores(['dist']),
-  {
-    files: ['**/*.{ts,tsx}'],
-    extends: [
-      // Other configs...
+### 🎯 Interface
+- [ ] Filtros por status/gênero/autor
+- [ ] Busca por nome de livro
+- [ ] Ordenação (título, rating, páginas, ano)
+- [ ] Tooltips informativos nos gráficos
 
-      // Remove tseslint.configs.recommended and replace with this
-      tseslint.configs.recommendedTypeChecked,
-      // Alternatively, use this for stricter rules
-      tseslint.configs.strictTypeChecked,
-      // Optionally, add this for stylistic rules
-      tseslint.configs.stylisticTypeChecked,
+### 📈 Gamificação
+- [ ] Meta anual de leitura (progresso vs meta)
+- [ ] Streak de leitura (meses consecutivos)
+- [ ] Achievements/badges
 
-      // Other configs...
-    ],
-    languageOptions: {
-      parserOptions: {
-        project: ['./tsconfig.node.json', './tsconfig.app.json'],
-        tsconfigRootDir: import.meta.dirname,
-      },
-      // other options...
-    },
-  },
-])
+### 🎨 Visual
+- [ ] Tema claro/escuro
+- [ ] Animações de transição
+- [ ] Tooltips com valores formatados
+
+## Configuração
+
+```bash
+npm install
+npm run dev
 ```
 
-You can also install [eslint-plugin-react-x](https://github.com/Rel1cx/eslint-react/tree/main/packages/plugins/eslint-plugin-react-x) and [eslint-plugin-react-dom](https://github.com/Rel1cx/eslint-react/tree/main/packages/plugins/eslint-plugin-react-dom) for React-specific lint rules:
+Criar `.env` com:
+```
+VITE_API_URL=http://localhost:3000
+```
 
-```js
-// eslint.config.js
-import reactX from 'eslint-plugin-react-x'
-import reactDom from 'eslint-plugin-react-dom'
+## API
 
-export default defineConfig([
-  globalIgnores(['dist']),
-  {
-    files: ['**/*.{ts,tsx}'],
-    extends: [
-      // Other configs...
-      // Enable lint rules for React
-      reactX.configs['recommended-typescript'],
-      // Enable lint rules for React DOM
-      reactDom.configs.recommended,
-    ],
-    languageOptions: {
-      parserOptions: {
-        project: ['./tsconfig.node.json', './tsconfig.app.json'],
-        tsconfigRootDir: import.meta.dirname,
-      },
-      // other options...
-    },
-  },
-])
+Consome endpoints do backend `backend__final`:
+- `GET /api/books/all` - lista completa de livros
+- `GET /api/books/options` - opções de filtros
+
+## Estrutura
+
+```
+src/
+├── api/          # clientes de API
+├── components/   # componentes React
+├── hooks/        # custom hooks (useBooks, etc)
+├── types/        # TypeScript types
+└── styles/       # CSS global
 ```
