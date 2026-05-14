@@ -8,6 +8,13 @@ export interface Book {
   genres?: string[];
   totalPages?: number | null;
   currentlyOn?: number | null;
+  bookSeries?: string | null;
+  type?: string[];
+  startEnd?: {
+    start: string;
+    end?: string;
+    time_zone?: string | null;
+  } | null;
 }
 
 export interface BookOptions {

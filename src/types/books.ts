@@ -5,9 +5,17 @@ export interface Book {
   status?: string | null;
   rate?: string | null;
   wasReadIn?: string[];
-  genres?: string[]; 
+  genres?: string[];
   totalPages?: number | null;
   currentlyOn?: number | null;
+
+  booksSeries?: string | null;
+  type?: string[];
+  startEnd?: {
+    start: string;
+    end?: string;
+    time_zone?: string | null;
+  } | null;
 }
 
 export interface BookOptions {
@@ -24,6 +32,6 @@ export interface BookOptions {
 }
 
 export interface BooksResponse {
-	data: Book[],
-	total: number;
+  data: Book[];
+  total: number;
 }

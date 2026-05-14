@@ -1,0 +1,86 @@
+.top10-section,
+.favorites-section,
+.authors-section {
+  margin-bottom: 32px;
+}
+
+.section-title {
+  font-size: var(--font-xl);
+  font-weight: 600;
+  margin-bottom: 16px;
+  color: #1f2937;
+}
+
+.books-grid {
+  display: grid;
+  grid-template-columns: repeat(auto-fill, minmax(200px, 1fr));
+  gap: 16px;
+}
+
+.book-card {
+  background: white;
+  border-radius: var(--radius-md);
+  padding: 16px;
+  box-shadow: var(--shadow-3d);
+}
+
+.book-rank {
+  font-size: var(--font-2xl);
+  font-weight: 700;
+  color: var(--color-primary);
+}
+
+.book-name {
+  font-size: var(--font-lg);
+  font-weight: 600;
+  margin: 8px 0;
+}
+
+.book-author {
+  color: #6b7280;
+  font-size: var(--font-sm);
+}
+
+.book-rate {
+  display: block;
+  margin-top: 8px;
+  font-size: var(--font-lg);
+}
+
+.books-list,
+.authors-list {
+  display: flex;
+  flex-wrap: wrap;
+  gap: 8px;
+}
+
+.book-item,
+.author-item {
+  display: flex;
+  align-items: center;
+  gap: 12px;
+  background: white;
+  padding: 12px 16px;
+  border-radius: var(--radius-md);
+  box-shadow: var(--shadow-3d);
+}
+
+.book-heart {
+  font-size: 1.2rem;
+}
+
+.author-rank {
+  font-weight: 700;
+  color: var(--color-primary);
+  min-width: 30px;
+}
+
+.author-name {
+  flex: 1;
+  font-weight: 500;
+}
+
+.author-count {
+  color: #6b7280;
+  font-size: var(--font-sm);
+}
