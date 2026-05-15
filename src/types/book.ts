@@ -10,6 +10,7 @@ export interface Book {
   currentlyOn?: number | null;
   bookSeries?: string | null;
   type?: string[];
+  cover?: string[];
   startEnd?: {
     start: string;
     end?: string;
@@ -18,16 +19,16 @@ export interface Book {
 }
 
 export interface BookOptions {
-  'Was read in': string[];
+  "Was read in": string[];
   Status: string[];
   Atlas: string[];
   Type: string[];
   Rate: string[];
   Tags: string[];
-  'First published in': string[];
-  'Published by': string[];
+  "First published in": string[];
+  "Published by": string[];
   Author: string[];
-  'Book Series Name': string[];
+  "Book Series Name": string[];
 }
 
 export interface BooksResponse {

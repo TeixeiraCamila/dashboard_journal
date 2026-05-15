@@ -5,40 +5,39 @@ Dashboard de visualização de estatísticas de leitura, consumindo dados da API
 ## Stack
 
 - **React 18** com TypeScript
+- **React Router** para navegação
 - **TanStack Query** para data fetching
 - **MUI X Charts** para visualizações
+- **Axios** para requisições HTTP
 - **Vite** para build
 
-## Features Atuais
+## Páginas
 
+| Rota | Descrição |
+|------|------------|
+| `/` | Dashboard principal com estatísticas e gráficos |
+| `/top10` | Top livros, favoritos e autores mais lidos |
+| `/series` | Gerenciamento de séries (em desenvolvimento) |
+| `/listing` | Listagem de livros lidos com capas |
+
+## Features
+
+### Dashboard
 - [x] Cards de estatísticas (páginas lidas, total livros, lendo, para ler)
 - [x] Gráfico de status (Pizza)
 - [x] Gráfico de notas (Barras)
 - [x] Gráfico de livros por ano (Linha)
 
-## Features Planejadas
+### Top 10
+- [x] Top 10 livros 5 estrelas
+- [x] Livros favoritos (❤)
+- [x] Top 10 autores mais lidos
 
-### 📊 Análises
-- [ ] Top 10 autores mais lidos
-- [ ] Distribuição de gêneros
-- [ ] Média de páginas por livro
-- [ ] livros lidos por mês
+### Series
+- [ ] Em desenvolvimento
 
-### 🎯 Interface
-- [ ] Filtros por status/gênero/autor
-- [ ] Busca por nome de livro
-- [ ] Ordenação (título, rating, páginas, ano)
-- [ ] Tooltips informativos nos gráficos
-
-### 📈 Gamificação
-- [ ] Meta anual de leitura (progresso vs meta)
-- [ ] Streak de leitura (meses consecutivos)
-- [ ] Achievements/badges
-
-### 🎨 Visual
-- [ ] Tema claro/escuro
-- [ ] Animações de transição
-- [ ] Tooltips com valores formatados
+### Listing
+- [x] Listagem de livros lidos com capas
 
 ## Configuração
 
@@ -56,15 +55,25 @@ VITE_API_URL=http://localhost:3000
 
 Consome endpoints do backend `backend__final`:
 - `GET /api/books/all` - lista completa de livros
-- `GET /api/books/options` - opções de filtros
+- `GET /api/books/options` - opções de filtros (status, genres, authors, etc)
 
 ## Estrutura
 
 ```
 src/
-├── api/          # clientes de API
-├── components/   # componentes React
-├── hooks/        # custom hooks (useBooks, etc)
-├── types/        # TypeScript types
-└── styles/       # CSS global
+├── api/           # clientes de API (books.ts, client.ts)
+├── components/    # componentes React (Sidebar, StatCard, charts)
+├── hooks/         # custom hooks (useBooks, useBookOptions)
+├── pages/         # páginas (Dashboard, Top10, Series, Listing)
+├── types/         # TypeScript types (Book, BookOptions)
+└── styles/        # CSS global e componentes
+```
+
+## Scripts
+
+```bash
+npm run dev      # Iniciar servidor de desenvolvimento
+npm run build   # Build de produção
+npm run lint    # Verificar código
+npm run preview # Visualizar build
 ```

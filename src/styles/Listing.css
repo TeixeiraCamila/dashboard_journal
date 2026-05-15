@@ -1,0 +1,10 @@
+.page-listing {
+  display: flex;
+  flex-wrap: wrap;
+  gap: var(--padding-sm);
+}
+.book-image {
+  width: 100px;
+  height: 150px;
+  box-shadow: var(--shadow-3d);
+}

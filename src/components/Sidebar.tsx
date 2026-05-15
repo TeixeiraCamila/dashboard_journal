@@ -30,7 +30,6 @@ export function Sidebar() {
               to={item.path}
               className={`sidebar__link ${isActive ? "sidebar__link--active" : ""}`}
             >
-              {/* <span className="sidebar__link-icon">{item.icon}</span> */}
               <span className="sidebar__link-label">{item.label}</span>
             </Link>
           );

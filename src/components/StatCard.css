@@ -2,7 +2,7 @@
   flex: 1;
   background: var(--color-surface);
   border-radius: var(--radius-lg);
-  padding: 20px;
+  padding: var(--padding-sm);
   box-shadow: var(--shadow-soft);
   transition: transform 0.2s;
   box-shadow: var(--shadow-3d);
