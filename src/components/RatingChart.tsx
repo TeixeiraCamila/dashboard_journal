@@ -1,6 +1,7 @@
 import { BarChart } from '@mui/x-charts/BarChart';
 import type { Book } from '../types/book';
 
+// Gráfico de barras com distribuição das notas dos livros
 interface RatingChartProps {
   books: Book[];
   options?: string[];

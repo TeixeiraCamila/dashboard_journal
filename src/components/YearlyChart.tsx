@@ -1,6 +1,7 @@
 import { LineChart } from "@mui/x-charts/LineChart";
 import type { Book } from "../types/book";
 
+// Gráfico de linhas com livros lidos por ano
 interface YearlyChartProps {
   books: Book[];
 }
@@ -41,7 +42,7 @@ export function YearlyChart({ books }: YearlyChartProps) {
       <LineChart
         dataset={data}
         xAxis={[{ scaleType: "band", dataKey: "year" }]}
-        series={[{ dataKey: "count", color: "#8B5CF6" }]}
+        series={[{ dataKey: "count", color: "#8B5CF6", showMark: false }]}
         width={600}
         height={250}
       />

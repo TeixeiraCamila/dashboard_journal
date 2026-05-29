@@ -1,6 +1,7 @@
 import "../styles/Top10.css";
 import { useBooks } from "../hooks";
 
+// Página com top 5 estrelas, favoritos e autores mais lidos
 export function Top10() {
   const { data } = useBooks();
   const books = data?.data || [];

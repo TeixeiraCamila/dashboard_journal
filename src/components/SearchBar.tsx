@@ -2,10 +2,12 @@
 import './SearchBar.css'
 import { useState, type KeyboardEvent } from "react";
 
+// Propriedade: callback disparada ao buscar
 interface SearchBarProps {
   onSearch: (term: string) => void;
 }
 
+// Input de busca com botão e atalho Enter
 export function SearchBar({ onSearch }: SearchBarProps) {
   const [value, setValue] = useState("");
 

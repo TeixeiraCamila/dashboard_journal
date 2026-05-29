@@ -1,4 +1,4 @@
-import { useBooks, useBookOptions } from "../hooks";
+import { useBooks, useBookOptions, useBookStats } from "../hooks";
 import { StatCard } from "../components/StatCard";
 import { StatusChart } from "../components/StatusChart";
 import { RatingChart } from "../components/RatingChart";
@@ -9,15 +9,17 @@ import checkImg from "../assets/check.png";
 import bookImg from "../assets/book.png";
 import listImg from "../assets/list.png";
 
+// Página principal com cards de estatísticas e gráficos
 export function Dashboard() {
   const {
     data: booksData,
     isLoading: booksLoading,
     error: booksError,
   } = useBooks();
+  const { data: stats, isLoading: statsLoading } = useBookStats();
   const { data: options } = useBookOptions();
 
-  if (booksLoading) {
+  if (booksLoading || statsLoading) {
     return <div className="loading">Carregando dados...</div>;
   }
 
@@ -30,14 +32,16 @@ export function Dashboard() {
   }
 
   const books = booksData?.data || [];
-  const readBooks = books.filter((b) => b.status === "Read");
-  const readingCount = books.filter((b) => b.status === "Reading").length;
-  const toReadCount = books.filter((b) => b.status === "To be read").length;
-
-  const totalPagesRead = readBooks.reduce(
-    (sum, b) => sum + (b.totalPages ?? 0),
-    0,
-  );
+  const s = stats || {
+    totalBooks: 0,
+    totalPagesRead: 0,
+    averagePagesRead: 0,
+    averageRating: "0.0",
+    booksReadInYear: 0,
+    totalPagesReadInYear: 0,
+    statusCounts: {},
+    currentlyReading: [],
+  };
 
   return (
     <>
@@ -49,26 +53,26 @@ export function Dashboard() {
         <StatCard
           icon={checkImg}
           label="Total de páginas lidas"
-          value={totalPagesRead}
+          value={s.totalPagesRead}
           color="#9B7DD5"
         />
         <StatCard
           icon={booksImg}
           label="Total de livros"
-          value={readBooks.length}
+          value={s.totalBooks}
           color="#F17D77"
         />
         <StatCard
           icon={bookImg}
-          label="Lendo"
-          value={readingCount}
-          color="#F9B14A"
+          label={`Lendo (${(s.currentlyReading || []).length})`}
+          value={`${s.averageRating} ⭐`}
+          color="#FBBF24"
         />
         <StatCard
           icon={listImg}
-          label="Para Ler"
-          value={toReadCount}
-          color="#81A8E1"
+          label="Páginas/mês (média)"
+          value={s.averagePagesRead}
+          color="#60A5FA"
         />
       </div>
 

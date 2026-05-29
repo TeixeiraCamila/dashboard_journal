@@ -1,8 +1,9 @@
 import "../styles/Listing.css";
 
-
 import { useBooks } from "../hooks";
+import { Link } from "react-router-dom";
 
+// Página com grid de capas dos livros lidos
 export function Listing() {
   const { data } = useBooks();
   const books = data?.data || [];
@@ -18,7 +19,13 @@ export function Listing() {
         {readBooks.map((book) => (
           <div key={book.id} className="listing-book">
             {book.cover && book.cover.length > 0 && (
-              <img className="book-image" src={book.cover[0]} alt={book.name} />
+              <Link to={`/books/${book.id}`}>
+                <img
+                  className="book-image"
+                  src={book.cover[0]}
+                  alt={book.name}
+                />
+              </Link>
             )}
           </div>
         ))}

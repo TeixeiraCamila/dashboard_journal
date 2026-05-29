@@ -1,5 +1,6 @@
 import "./StatCard.css";
 
+// Card de métrica com ícone, label e valor
 interface StatCardProps {
   icon: string;
   label: string;

@@ -43,6 +43,7 @@ body {
   grid-template-columns: 220px 1fr;
   max-height: 100vh;
   margin: 1rem;
+  gap: 24px;
 }
 
 .sidebar {
@@ -97,12 +98,6 @@ body {
 
 .sidebar__search {
   margin-bottom: 24px;
-}
-
-.search-bar {
-  display: flex;
-  gap: 8px;
-  align-items: center;
 }
 
 .search-bar__input {

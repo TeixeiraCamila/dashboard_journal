@@ -1,6 +1,7 @@
 import { PieChart } from "@mui/x-charts/PieChart";
 import type { Book } from "../types/book";
 
+// Gráfico de pizza com distribuição dos status dos livros
 interface StatusChartProps {
   books: Book[];
 }

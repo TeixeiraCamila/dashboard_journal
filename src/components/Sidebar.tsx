@@ -2,6 +2,7 @@ import { Link, useLocation } from "react-router-dom";
 
 import { SearchBar } from "./SearchBar";
 
+// Itens de navegação do menu lateral
 const navItems = [
   { path: "/", label: "Dashboard", icon: "📊" },
   { path: "/top10", label: "Top 10", icon: "🏆" },
@@ -9,6 +10,7 @@ const navItems = [
   { path: "/listing", label: "Listagem", icon: "📋" },
 ];
 
+// Barra lateral com navegação e busca
 export function Sidebar() {
   const location = useLocation();
 
