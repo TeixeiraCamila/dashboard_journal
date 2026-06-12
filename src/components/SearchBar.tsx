@@ -13,6 +13,7 @@ export function SearchBar({ onSearch }: SearchBarProps) {
 
   const handleSearch = () => {
     onSearch(value.trim());
+    console.log("🚀 ~ handleSearch ~ value.trim():", value.trim())
   };
 
   const handleKeyDown = (e: KeyboardEvent<HTMLInputElement>) => {

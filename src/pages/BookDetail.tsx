@@ -22,7 +22,7 @@ export function BookDetail() {
   if (!book) {
     return (
       <div className="book-detail">
-        <Link to="/listing" className="book-detail__back">← Voltar para listagem</Link>
+        <Link to="/" className="book-detail__back">← Voltar para listagem</Link>
         <div className="book-detail__not-found">
           <h2>Livro não encontrado</h2>
           <p>O livro que você procura não está disponível.</p>
@@ -33,7 +33,7 @@ export function BookDetail() {
 
   return (
     <div className="book-detail">
-      <Link to="/listing" className="book-detail__back">← Voltar para listagem</Link>
+      <Link to="/" className="book-detail__back">← Voltar para listagem</Link>
 
       <div className="book-detail__content">
         {book.cover && book.cover.length > 0 && (

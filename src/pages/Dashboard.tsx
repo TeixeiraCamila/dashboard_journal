@@ -70,7 +70,7 @@ export function Dashboard() {
         />
         <StatCard
           icon={listImg}
-          label="Páginas/mês (média)"
+          label="Páginas/livro (média)"
           value={s.averagePagesRead}
           color="#60A5FA"
         />

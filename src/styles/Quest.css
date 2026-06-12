@@ -1,37 +1,37 @@
-.series-page {
+.quest-page {
   display: flex;
   flex-direction: column;
   gap: 24px;
 }
 
-.series-empty {
+.quest-empty {
   text-align: center;
   padding: 60px 20px;
   color: #6b7280;
   font-size: var(--font-lg);
 }
 
-.series-card {
+.quest-card {
   background:  var(--color-light);
   border-radius: var(--radius-lg);
   padding: 20px;
   box-shadow: var(--shadow-3d);
 }
 
-.series-card__header {
+.quest-card__header {
   display: flex;
   align-items: center;
   justify-content: space-between;
   margin-bottom: 16px;
 }
 
-.series-card__title {
+.quest-card__title {
   font-size: var(--font-xl);
   font-weight: 700;
   color: #1f2937;
 }
 
-.series-card__count {
+.quest-card__count {
   font-size: var(--font-sm);
   color: var(--color-primary);
   font-weight: 600;
@@ -40,14 +40,14 @@
   border-radius: 20px;
 }
 
-.series-card__books {
+.quest-card__books {
   display: flex;
   gap: 16px;
   overflow-x: auto;
   padding-bottom: 8px;
 }
 
-.series-card__book {
+.quest-card__book {
   display: flex;
   flex-direction: column;
   align-items: center;
@@ -58,11 +58,11 @@
   transition: transform 0.2s;
 }
 
-.series-card__book:hover {
+.quest-card__book:hover {
   transform: translateY(-4px);
 }
 
-.series-card__cover {
+.quest-card__cover {
   width: 100px;
   height: 150px;
   object-fit: cover;
@@ -70,7 +70,7 @@
   box-shadow: var(--shadow-soft);
 }
 
-.series-card__cover-placeholder {
+.quest-card__cover-placeholder {
   width: 100px;
   height: 150px;
   border-radius: var(--radius-md);
@@ -83,7 +83,7 @@
   font-weight: 700;
 }
 
-.series-card__book-name {
+.quest-card__book-name {
   font-size: var(--font-xs);
   color: #374151;
   text-align: center;
@@ -92,17 +92,17 @@
 }
 
 @media (max-width: 768px) {
-  .series-card__books {
+  .quest-card__books {
     gap: 12px;
   }
 
-  .series-card__book {
+  .quest-card__book {
     min-width: 80px;
     max-width: 80px;
   }
 
-  .series-card__cover,
-  .series-card__cover-placeholder {
+  .quest-card__cover,
+  .quest-card__cover-placeholder {
     width: 80px;
     height: 120px;
   }

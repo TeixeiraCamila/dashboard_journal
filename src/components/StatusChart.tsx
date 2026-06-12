@@ -47,7 +47,7 @@ export function StatusChart({ books }: StatusChartProps) {
         height={280}
         sx={{
           "& .MuiPieArc-label": {
-            fill: "white",
+            fill: " var(--color-light);",
             fontWeight: 600,
             fontSize: 13,
           },

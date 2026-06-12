@@ -6,6 +6,8 @@
   --color-accent-pink: #f472b6;
   --color-accent-mint: #34d399;
   --color-accent-yellow: #fbbf24;
+  --color-dark: #1f2937;
+  --color-light: #f9fafb;
   --padding-sm: 1rem;
   --radius-lg: 20px;
   --radius-md: 12px;
@@ -23,7 +25,7 @@
   --font-2xl: 1.5rem;
   --font-3xl: 1.75rem;
 
-  --height: calc(100vh - 2rem)
+  --height: calc(100vh - 2rem);
 }
 
 * {
@@ -53,15 +55,17 @@ body {
     var(--color-primary) 100%
   );
   padding: 24px 16px;
-  color: white;
+  color: var(--color-light);
   border-radius: var(--radius-md);
   box-shadow: var(--shadow-3d);
   height: var(--height);
 }
 
 .sidebar__title {
+  color: var(--color-light);
   font-size: var(--font-xl);
   font-weight: 700;
+  text-shadow: 2px 2px var(--color-dark);
 }
 
 .sidebar__header {
@@ -120,7 +124,7 @@ body {
   border: none;
   border-radius: var(--radius-md);
   background: var(--color-primary);
-  color: white;
+  color:  var(--color-light);
   cursor: pointer;
   font-size: 1rem;
   transition: background 0.2s;
@@ -132,7 +136,7 @@ body {
 
 .sidebar__link--active {
   background: rgba(255, 255, 255, 0.2);
-  color: white;
+  color:  var(--color-light);
 }
 
 .sidebar__link:hover {
@@ -161,7 +165,8 @@ body {
 .main__title {
   font-size: var(--font-3xl);
   font-weight: 700;
-  color: #1f2937;
+  color: var(--color-dark);
+  text-shadow: 1px 1px  var(--color-dark);
 }
 
 .stats-grid {
@@ -179,15 +184,12 @@ body {
 
 .chart-card {
   flex: 1;
-  background: white;
+  background:  var(--color-light);
   border-radius: var(--radius-lg);
   padding: var(--padding-sm);
   box-shadow: var(--shadow-3d);
 }
 
-.chart-card--full {
-  grid-column: span 2;
-}
 
 .chart-card__title {
   font-size: var(--font-lg);
@@ -280,4 +282,3 @@ body {
     font-size: var(--font-lg);
   }
 }
-

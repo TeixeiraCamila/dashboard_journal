@@ -4,10 +4,11 @@ import { SearchBar } from "./SearchBar";
 
 // Itens de navegação do menu lateral
 const navItems = [
-  { path: "/", label: "Dashboard", icon: "📊" },
+  { path: "/", label: "Listagem", icon: "📋" },
+  { path: "/dashboard", label: "Dashboard", icon: "📊" },
   { path: "/top10", label: "Top 10", icon: "🏆" },
   { path: "/series", label: "Minhas Séries", icon: "📚" },
-  { path: "/listing", label: "Listagem", icon: "📋" },
+  { path: "/quests", label: "Minhas Missões", icon: "🎯" },
 ];
 
 // Barra lateral com navegação e busca

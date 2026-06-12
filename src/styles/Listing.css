@@ -8,3 +8,19 @@
   height: 150px;
   box-shadow: var(--shadow-3d);
 }
+.genres-container {
+  display: flex;
+  flex-wrap: wrap;
+  gap: var(--padding-sm);
+  margin: var(--padding-sm) 0;
+}
+
+.genres-container .tag {
+  background-color: var(--color-secondary);
+  color: #fff;
+  padding: 4px 8px;
+  border-radius: 4px;
+  font-size: 0.8rem;
+  box-shadow: var(--shadow-3d);
+  cursor: pointer;
+}
