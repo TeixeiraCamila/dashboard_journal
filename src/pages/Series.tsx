@@ -3,7 +3,8 @@ import { Link } from "react-router-dom";
 import type { Book } from "../types/book";
 import "../styles/Series.css";
 
-// Página que agrupa livros por série literária (bookSeries)
+// Series: agrupa livros pelo campo bookSeries usando um dicionário (Record<string, Book[]>)
+// Ordena séries por quantidade de livros (decrescente) para destacar as maiores
 export function Series() {
   const { data, isLoading, error } = useBooks();
   const books = data?.data || [];
@@ -20,10 +21,12 @@ export function Series() {
     );
   }
 
+  // Filtra apenas livros que pertencem a alguma série (type guard com type narrowing)
   const seriesBooks = books.filter((b): b is Book & { bookSeries: string } =>
     !!b.bookSeries
   );
 
+  // Dicionário para agrupar: chave = nome da série, valor = array de livros
   const seriesMap: Record<string, Book[]> = {};
   seriesBooks.forEach((b) => {
     const name = b.bookSeries;

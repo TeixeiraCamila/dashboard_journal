@@ -1,12 +1,14 @@
 import { LineChart } from "@mui/x-charts/LineChart";
 import type { Book } from "../types/book";
 
-// Gráfico de linhas com livros lidos por ano
+// YearlyChart: gráfico de linhas (MUI LineChart) com tendência de leitura por ano
+// Filtra apenas livros "Read" e agrupa por wasReadIn (pode ter múltiplos anos)
 interface YearlyChartProps {
   books: Book[];
 }
 
 export function YearlyChart({ books }: YearlyChartProps) {
+  // Filtra apenas livros lidos; wasReadIn pode conter anos como "2024", "2025", etc.
   const readBooks = books.filter((book) => book.status === "Read");
 
   const yearCounts = readBooks.reduce(
@@ -21,6 +23,7 @@ export function YearlyChart({ books }: YearlyChartProps) {
     {} as Record<string, number>,
   );
 
+  // Converte o dicionário para array ordenado por ano (crescente) para o eixo X do gráfico
   const data = Object.entries(yearCounts)
     .map(([year, count]) => ({ year: parseInt(year), count }))
     .sort((a, b) => a.year - b.year);

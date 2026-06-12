@@ -1,9 +1,9 @@
 import axios from 'axios';
 
-// URL da API definida no .env ou fallback para localhost
+// Variável de ambiente VITE_API_URL (Vite expõe apenas VITE_*). Fallback para localhost.
 const API_URL = import.meta.env.VITE_API_URL || 'http://localhost:3000';
 
-// Cliente Axios compartilhado por todos os endpoints
+// Instância Axios reutilizável com baseURL e Content-Type padrão
 export const apiClient = axios.create({
   baseURL: API_URL,
   headers: { 'Content-Type': 'application/json' },

@@ -4,7 +4,8 @@ import { useBooks, useBookOptions } from "../hooks";
 import { Link } from "react-router-dom";
 import React from "react";
 
-// Página com grid de capas dos livros lidos
+// Listing: grid de capas com filtro por gênero (Tag). Estado local com useState.
+// useBooks + useBookOptions alimentam o grid e as tags de filtro.
 export function Listing() {
   const [selectedGenre, setSelectedGenre] = React.useState("");
 
@@ -15,10 +16,12 @@ export function Listing() {
 
   const readBooks = books.filter((b) => b.status === "Read");
 
+  // Toggle de gênero: clica no mesmo gênero para limpar o filtro
   const handleGenreClick = (genre: string) => {
     setSelectedGenre((prevGenre) => (prevGenre === genre ? "" : genre));
   };
 
+  // Filtragem client-side; livros marcados como "Read" apenas
   const filteredBooks = selectedGenre
     ? readBooks.filter((book) => book.genres?.includes(selectedGenre))
     : readBooks;

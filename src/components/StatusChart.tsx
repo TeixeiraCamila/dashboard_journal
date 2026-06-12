@@ -1,11 +1,13 @@
 import { PieChart } from "@mui/x-charts/PieChart";
 import type { Book } from "../types/book";
 
-// Gráfico de pizza com distribuição dos status dos livros
+// StatusChart: gráfico de pizza (MUI PieChart) com distribuição dos status dos livros
+// Agrupa por status via reduce e mapeia para o formato dataset do MUI x-charts
 interface StatusChartProps {
   books: Book[];
 }
 
+// Paleta fixa de cores para os segmentos do gráfico de pizza
 const COLORS = ["#F472B6", "#8B5CF6", "#34D399", "#FBBF24", "#60A5FA"];
 
 export function StatusChart({ books }: StatusChartProps) {

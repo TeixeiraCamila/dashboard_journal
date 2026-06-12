@@ -1,6 +1,7 @@
 import "./StatCard.css";
 
-// Card de métrica com ícone, label e valor
+// StatCard: componente de apresentação que renderiza ícone (imagem ou emoji) + label + valor
+// Usado no Dashboard para exibir métricas como total de livros e páginas lidas
 interface StatCardProps {
   icon: string;
   label: string;
@@ -9,6 +10,7 @@ interface StatCardProps {
 }
 
 export function StatCard({ icon, label, value, color }: StatCardProps) {
+  // Detecta se o ícone é imagem (caminho de arquivo) ou emoji (string curta)
   const isImage =
     icon.startsWith("/") || icon.endsWith(".png") || icon.endsWith(".svg");
 

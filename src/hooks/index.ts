@@ -1,7 +1,7 @@
 import { useQuery } from "@tanstack/react-query";
 import { fetchBooks, fetchBookOptions, fetchBookById, fetchBookStats } from "../api/books";
 
-// Hook: todos os livros com cache de 5 minutos
+// Hook useQuery: busca todos os livros com staleTime de 5 min (evita refetch desnecessário)
 export function useBooks() {
   return useQuery({
     queryKey: ["books"],

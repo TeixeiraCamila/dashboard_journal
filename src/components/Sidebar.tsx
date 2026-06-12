@@ -2,7 +2,7 @@ import { Link, useLocation } from "react-router-dom";
 
 import { SearchBar } from "./SearchBar";
 
-// Itens de navegação do menu lateral
+// Array de rotas centralizado: fonte única para os links do menu lateral
 const navItems = [
   { path: "/", label: "Listagem", icon: "📋" },
   { path: "/dashboard", label: "Dashboard", icon: "📊" },
@@ -11,7 +11,7 @@ const navItems = [
   { path: "/quests", label: "Minhas Missões", icon: "🎯" },
 ];
 
-// Barra lateral com navegação e busca
+// Sidebar fixa com navegação e busca. useLocation() determina o link ativo (classe --active)
 export function Sidebar() {
   const location = useLocation();
 

@@ -3,7 +3,8 @@ import { Link } from "react-router-dom";
 import type { Book } from "../types/book";
 import "../styles/Quest.css";
 
-// Página que agrupa livros por série literária (quests)
+// Quests: agrupa livros por quest (pode ter múltiplas quests por livro, join desnormalizado)
+// Diferente de Series, um livro pode pertencer a várias quests (array quest[])
 export function Quests() {
   const { data, isLoading, error } = useBooks();
   const books = data?.data || [];
@@ -25,6 +26,7 @@ export function Quests() {
       Array.isArray(b.quest) && b.quest.length > 0,
   );
 
+  // Dicionário: cada quest vira uma chave; um livro aparece em N quests (join desnormalizado)
   const questMap: Record<string, Book[]> = {};
   questBooks.forEach((b) => {
     b.quest.forEach((quest) => {

@@ -1,7 +1,7 @@
 import { apiClient } from "./client";
 import type { Book, BookOptions, BooksResponse, BookStats } from "../types/book";
 
-// Busca todos os livros da API (paginação automática no backend)
+// Função de busca: tipada com BooksResponse para garantir consistência dos dados
 export const fetchBooks = async (): Promise<BooksResponse> => {
   const { data } = await apiClient.get("/api/books/all");
   return data;

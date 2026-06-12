@@ -2,7 +2,8 @@ import { useParams, Link } from "react-router-dom";
 import { useBookById } from "../hooks";
 import "../styles/BookDetail.css";
 
-// Página de detalhes de um livro acessada via /books/:id
+// BookDetail: rota /books/:id, usa useParams para extrair ID e useBookById para fetch individual
+// React Query habilita a query apenas quando id existe (enabled: !!id no hook)
 export function BookDetail() {
   const { id } = useParams<{ id: string }>();
   const { data: book, isLoading, error } = useBookById(id!);

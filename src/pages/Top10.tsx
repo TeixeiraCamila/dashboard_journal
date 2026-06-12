@@ -1,7 +1,8 @@
 import "../styles/Top10.css";
 import { useBooks } from "../hooks";
 
-// Página com top 5 estrelas, favoritos e autores mais lidos
+// Top10: três seções computadas a partir dos livros lidos — top estrelas, favoritos e autores
+// Toda a lógica de agregação é client-side (reduce/flatMap) sem endpoint específico
 export function Top10() {
   const { data } = useBooks();
   const books = data?.data || [];
@@ -10,10 +11,13 @@ export function Top10() {
 
   const nonFavoriteBooks = readBooks.filter((b) => b.rate !== "❤");
 
+  // Livros 5 estrelas (exclui favoritos ❤ para evitar duplicidade)
   const top10 = nonFavoriteBooks.filter((b) => b.rate === "⭐⭐⭐⭐⭐");
 
+  // Favoritos são livros marcados com coração no campo rate
   const favoritos = readBooks.filter((b) => b.rate === "❤");
 
+  // Agrega contagem de livros por autor usando flatMap + reduce
   const authorCount = readBooks
     .flatMap((b) => b.author)
     .reduce(

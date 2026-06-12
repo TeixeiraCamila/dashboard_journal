@@ -9,10 +9,10 @@ import { Listing } from "./pages/Listing";
 import "./styles/global.css";
 import { BookDetail } from "./pages/BookDetail";
 
-// Cliente do React Query para cache e gerenciamento de estados
+// QueryClient gerencia cache, refetch e estado global das queries do React Query
 const queryClient = new QueryClient();
 
-// Componente raiz com roteamento e provider de queries
+// AppProvider: BrowserRouter (rotas) + QueryClientProvider (cache) + layout com sidebar
 export default function App() {
   return (
     <BrowserRouter>

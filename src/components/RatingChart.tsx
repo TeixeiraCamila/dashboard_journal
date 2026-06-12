@@ -1,12 +1,14 @@
 import { BarChart } from '@mui/x-charts/BarChart';
 import type { Book } from '../types/book';
 
-// Gráfico de barras com distribuição das notas dos livros
+// RatingChart: gráfico de barras (MUI BarChart) com distribuição de notas
+// Usa a ordem fixa RATE_ORDER como fallback, ou as options vindas da API
 interface RatingChartProps {
   books: Book[];
   options?: string[];
 }
 
+// Ordem canônica das notas (do maior para o menor) para garantir consistência no eixo X
 const RATE_ORDER = ['❤', '⭐⭐⭐⭐⭐', '⭐⭐⭐⭐', '⭐⭐⭐', '⭐⭐', '⭐'];
 const COLORS = ['#F472B6', '#8B5CF6', '#A78BFA', '#C4B5FD', '#DDD6FE', '#EDE9FE'];
 

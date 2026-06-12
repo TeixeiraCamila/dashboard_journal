@@ -7,7 +7,8 @@ interface SearchBarProps {
   onSearch: (term: string) => void;
 }
 
-// Input de busca com botão e atalho Enter
+// SearchBar: input controlado (useState) com suporte a Enter e botão de busca
+// onSearch callback propaga o termo para o componente pai
 export function SearchBar({ onSearch }: SearchBarProps) {
   const [value, setValue] = useState("");
 

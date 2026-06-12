@@ -9,7 +9,8 @@ import checkImg from "../assets/check.png";
 import bookImg from "../assets/book.png";
 import listImg from "../assets/list.png";
 
-// Página principal com cards de estatísticas e gráficos
+// Dashboard: coordena 3 hooks React Query (books, stats, options) em paralelo
+// useBooks + useBookStats disparam simultaneamente; useBookOptions é opcional
 export function Dashboard() {
   const {
     data: booksData,
@@ -19,6 +20,7 @@ export function Dashboard() {
   const { data: stats, isLoading: statsLoading } = useBookStats();
   const { data: options } = useBookOptions();
 
+  // Loading/error states gerenciados pelo React Query; exibe feedback visual
   if (booksLoading || statsLoading) {
     return <div className="loading">Carregando dados...</div>;
   }
@@ -31,6 +33,7 @@ export function Dashboard() {
     );
   }
 
+  // Fallback para objeto vazio enquanto stats não carrega; evita erros de render
   const books = booksData?.data || [];
   const s = stats || {
     totalBooks: 0,
