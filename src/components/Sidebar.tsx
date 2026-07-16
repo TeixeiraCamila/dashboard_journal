@@ -9,16 +9,16 @@ import LibraryBooks from "@mui/icons-material/LibraryBooks";
 import SportsEsports from "@mui/icons-material/SportsEsports";
 
 const iconMap: Record<string, React.ReactNode> = {
-  "/": <ViewList />,
-  "/dashboard": <BarChart />,
+  "/": <BarChart />,
+  "/listing": <ViewList />,
   "/top10": <EmojiEvents />,
   "/series": <LibraryBooks />,
   "/quests": <SportsEsports />,
 };
 
 const navItems = [
-  { path: "/", label: "Listagem" },
-  { path: "/dashboard", label: "Dashboard" },
+  { path: "/", label: "Dashboard" },
+  { path: "/listing", label: "Listagem" },
   { path: "/top10", label: "Top 10" },
   { path: "/series", label: "Minhas Séries" },
   { path: "/quests", label: "Minhas Missões" },

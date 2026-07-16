@@ -1,12 +1,10 @@
 # Book Journal Dashboard
 
-Dashboard interativo de visualização de estatísticas de leitura, consumindo dados de livros do Notion via API. Design soft UI com métricas, gráficos, rankings e listagem de livros.
+Dashboard de visualização de estatísticas de leitura, consumindo dados de livros do Notion via API. Design soft UI com métricas, gráficos, rankings e listagem de livros. Projeto exclusivamente **read-only** — nenhuma ação de criação, edição ou exclusão é feita aqui.
 
 ## Sobre
 
-Aplicação React SPA que transforma dados do Notion em um painel visual de acompanhamento de leitura. Ideal para quem quer ver o progresso literário de forma agradável — com cards coloridos, gráficos animados e uma estética que foge do dashboard corporativo.
-
-Consome a API do backend `backend__final` (domínio **Books**).
+Aplicação React SPA que transforma dados do Notion em um painel visual de acompanhamento de leitura. Consome a API do backend `backend__final` (domínio **Books**) apenas para consulta — todo CRUD é feito diretamente no Notion.
 
 ### Funcionalidades
 
@@ -17,7 +15,6 @@ Consome a API do backend `backend__final` (domínio **Books**).
 - **Minhas Séries** — Livros agrupados por série literária em cards com scroll horizontal
 - **Minhas Missões (Quests)** — Livros agrupados por missão (um livro pode estar em várias quests)
 - **Sidebar** — Navegação lateral fixa com links para todas as páginas
-- **Busca** — Input de busca por nome/autor (pendente de integração)
 
 ## Stack
 
@@ -38,8 +35,8 @@ Consome a API do backend `backend__final` (domínio **Books**).
 
 | Path | Página |
 |------|--------|
-| `/` | Listagem de livros lidos |
-| `/dashboard` | Dashboard com métricas e gráficos |
+| `/` | Dashboard com métricas e gráficos |
+| `/listing` | Listagem de livros lidos |
 | `/top10` | Rankings (top livros, favoritos, autores) |
 | `/series` | Séries literárias |
 | `/quests` | Missões (quests) |
@@ -90,7 +87,7 @@ src/
 │   ├── Series.css
 │   ├── Quest.css
 │   └── Top10.css
-└── assets/                # PNGs (check, books, book, list, hero)
+└── assets/shelfs/         # Imagens de fundo dos StatCards
 ```
 
 ## Instalação
@@ -179,11 +176,11 @@ interface BookStats {
 
 ## Design Decisions
 
+- **Read-only** — o frontend é apenas visualizador. Cadastro e edição de livros são feitos diretamente no Notion.
 - **CSS puro** em vez de CSS-in-JS ou Tailwind — cada página tem seu arquivo `.css` importado, com variáveis globais no `global.css`
 - **TanStack Query** para cache automático com staleTime — evita refetch desnecessário e garante dados frescos nas abas
 - **Agregação client-side** no Top10, Series e Quests — os dados vêm todos de uma vez via `GET /api/books/all` e o frontend faz reduce/filter
 - **MUI X-Charts** para gráficos — PieChart, BarChart e LineChart com integração ao ecossistema MUI
-- **estados de loading/error** apenas no Dashboard e BookDetail — Listing e Top10 ainda não tratam (pendente)
 
 ## Deploy
 
@@ -194,7 +191,6 @@ interface BookStats {
 
 ## Melhorias Futuras
 
-- [ ] Busca funcional (filtro client-side com debounce)
 - [ ] Loading/error states em Listing e Top10
 - [ ] Rota 404 e Error Boundary
 - [ ] Lazy loading de páginas

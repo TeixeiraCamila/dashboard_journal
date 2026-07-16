@@ -1,4 +1,4 @@
-import { BrowserRouter, Routes, Route } from "react-router-dom";
+import { BrowserRouter, Routes, Route, Navigate } from "react-router-dom";
 import { QueryClient, QueryClientProvider } from "@tanstack/react-query";
 import { Sidebar } from "./components/Sidebar";
 import { Dashboard } from "./pages/Dashboard";
@@ -30,8 +30,9 @@ export default function App() {
             }}
           >
             <Routes>
-              <Route path="/" element={<Listing />} />
-              <Route path="/dashboard" element={<Dashboard />} />
+              <Route path="/" element={<Dashboard />} />
+              <Route path="/dashboard" element={<Navigate to="/" replace />} />
+              <Route path="/listing" element={<Listing />} />
               <Route path="/top10" element={<Top10 />} />
               <Route path="/series" element={<Series />} />
               <Route path="/books/:id" element={<BookDetail />} />
