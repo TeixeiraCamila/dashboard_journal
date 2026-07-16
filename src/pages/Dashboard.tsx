@@ -4,10 +4,10 @@ import { StatusChart } from "../components/StatusChart";
 import { RatingChart } from "../components/RatingChart";
 import { YearlyChart } from "../components/YearlyChart";
 
-import booksImg from "../assets/books.png";
-import checkImg from "../assets/check.png";
-import bookImg from "../assets/book.png";
-import listImg from "../assets/list.png";
+import DoneAll from "@mui/icons-material/DoneAll";
+import LibraryBooks from "@mui/icons-material/LibraryBooks";
+import MenuBook from "@mui/icons-material/MenuBook";
+import FormatListBulleted from "@mui/icons-material/FormatListBulleted";
 
 // Dashboard: coordena 3 hooks React Query (books, stats, options) em paralelo
 // useBooks + useBookStats disparam simultaneamente; useBookOptions é opcional
@@ -54,25 +54,25 @@ export function Dashboard() {
 
       <div className="stats-grid">
         <StatCard
-          icon={checkImg}
+          icon={<DoneAll />}
           label="Total de páginas lidas"
           value={s.totalPagesRead}
           color="#9B7DD5"
         />
         <StatCard
-          icon={booksImg}
+          icon={<LibraryBooks />}
           label="Total de livros"
           value={s.totalBooks}
           color="#F17D77"
         />
         <StatCard
-          icon={bookImg}
+          icon={<MenuBook />}
           label={`Lendo (${(s.currentlyReading || []).length})`}
           value={`${s.averageRating} ⭐`}
           color="#FBBF24"
         />
         <StatCard
-          icon={listImg}
+          icon={<FormatListBulleted />}
           label="Páginas/livro (média)"
           value={s.averagePagesRead}
           color="#60A5FA"

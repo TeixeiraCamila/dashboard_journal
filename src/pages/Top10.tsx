@@ -1,5 +1,8 @@
 import "../styles/Top10.css";
 import { useBooks } from "../hooks";
+import EmojiEvents from "@mui/icons-material/EmojiEvents";
+import Favorite from "@mui/icons-material/Favorite";
+import RateReview from "@mui/icons-material/RateReview";
 
 // Top10: três seções computadas a partir dos livros lidos — top estrelas, favoritos e autores
 // Toda a lógica de agregação é client-side (reduce/flatMap) sem endpoint específico
@@ -39,7 +42,7 @@ export function Top10() {
       </header>
 
       <section className="top10-section">
-        <h2 className="section-title">🏆 Top Livros</h2>
+        <h2 className="section-title"><EmojiEvents /> Top Livros</h2>
         <div className="books-grid">
           {top10.map((book, i) => (
             <div key={book.id} className="book-card">
@@ -53,7 +56,7 @@ export function Top10() {
       </section>
 
       <section className="favorites-section">
-        <h2 className="section-title">❤️ Favoritos</h2>
+        <h2 className="section-title"><Favorite /> Favoritos</h2>
         <div className="books-list">
           {favoritos.map((book) => (
             <div key={book.id} className="book-item">
@@ -66,7 +69,7 @@ export function Top10() {
       </section>
 
       <section className="authors-section">
-        <h2 className="section-title">✍️ Top Autores mais lidos</h2>
+        <h2 className="section-title"><RateReview /> Top Autores mais lidos</h2>
         <div className="authors-list">
           {topAuthors.map(([author, count], i) => (
             <div key={author} className="author-item">

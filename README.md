@@ -1,88 +1,96 @@
 # Book Journal Dashboard
 
-Dashboard interativo de visualização de estatísticas de leitura, consumindo dados de livros do Notion via API. Exibe métricas, gráficos e rankings com design kawaii/soft UI.
+Dashboard interativo de visualização de estatísticas de leitura, consumindo dados de livros do Notion via API. Design soft UI com métricas, gráficos, rankings e listagem de livros.
 
-## Descrição
+## Sobre
 
-Aplicação React SPA focada em visualização de dados de leitura. Apresenta cards de métricas, gráficos de pizza/barras/linhas, rankings de livros e autores, listagem com capas e detalhes de livros. Ideal para quem quer acompanhar o progresso de leitura de forma visual e agradável.
+Aplicação React SPA que transforma dados do Notion em um painel visual de acompanhamento de leitura. Ideal para quem quer ver o progresso literário de forma agradável — com cards coloridos, gráficos animados e uma estética que foge do dashboard corporativo.
 
-Consome a API do backend em `backend__final`, domínio **Books**.
+Consome a API do backend `backend__final` (domínio **Books**).
 
-## Tecnologias
+### Funcionalidades
 
-- **React 18** — UI library
-- **TypeScript** — Tipagem estática
-- **React Router 7** — Roteamento SPA
-- **TanStack Query** — Data fetching e cache
-- **MUI X Charts** — Gráficos e visualizações
-- **MUI Material** — Componentes de UI base
-- **Axios** — HTTP client
-- **Emotion** — CSS-in-JS (styled components)
-- **Vite 8** — Build tool
-- **ESLint** — Qualidade de código
+- **Dashboard** — 4 StatCards com métricas (páginas lidas, total de livros, média de avaliação, média de páginas/livro), mais gráficos de pizza (status), barras (notas) e linhas (livros por ano)
+- **Listagem** — Grid de capas com filtro por gênero (tag)
+- **Detalhe do Livro** — Página individual com capa, status, nota, gêneros, período de leitura, série, quests e metadados
+- **Top 10** — Rankings de livros 5 estrelas, favoritos (❤) e autores mais lidos
+- **Minhas Séries** — Livros agrupados por série literária em cards com scroll horizontal
+- **Minhas Missões (Quests)** — Livros agrupados por missão (um livro pode estar em várias quests)
+- **Sidebar** — Navegação lateral fixa com links para todas as páginas
+- **Busca** — Input de busca por nome/autor (pendente de integração)
 
-## Funcionalidades
+## Stack
 
-### Dashboard
-- Cards de estatísticas (páginas lidas, total de livros, lendo agora, média páginas/mês)
-- Gráfico de pizza por status
-- Gráfico de barras por avaliação
-- Gráfico de linha por ano
+| Categoria | Tecnologia |
+|-----------|-----------|
+| Framework | React 18 |
+| Linguagem | TypeScript ~6.0 |
+| Roteamento | React Router DOM 7 |
+| Data Fetching | TanStack Query 5 |
+| HTTP Client | Axios |
+| Gráficos | MUI X-Charts 9 (Pie, Bar, Line) |
+| UI Base | MUI Material 9 |
+| CSS-in-JS | Emotion 11 (peer dep MUI) |
+| Build | Vite 8 |
+| Linter | ESLint 10 + typescript-eslint |
 
-### Top 10
-- Top 10 livros 5 estrelas
-- Livros favoritados
-- Top 10 autores mais lidos
+## Rotas
 
-### Listagem
-- Listagem completa de livros com capas
-- Busca e filtros
-- Detalhes do livro por ID
+| Path | Página |
+|------|--------|
+| `/` | Listagem de livros lidos |
+| `/dashboard` | Dashboard com métricas e gráficos |
+| `/top10` | Rankings (top livros, favoritos, autores) |
+| `/series` | Séries literárias |
+| `/quests` | Missões (quests) |
+| `/books/:id` | Detalhe do livro |
 
 ## Layout
 
-Design **kawaii/soft UI** — estética fofa e acolhedora com:
-- Tons pastéis (lavanda, rosa, roxo, amarelo, menta, azul bebê)
-- Border-radius extremo
-- Sombras suaves e glassmorphism
-- Neumorfismo nos cards
-- Ilustrações 3D cartoon
+Design **soft UI** — estética fofa e acolhedora:
 
-Estrutura em 3 zonas: sidebar fixa à esquerda, conteúdo scrollável, sem painel direito.
+- Fundo lavanda claro com grid diagonal sutil
+- Sidebar fixa à esquerda (gradiente roxo) com 220px
+- Cards com neumorfismo e `border-radius: 20px`
+- Sombras 3D (`box-shadow` multi-camada)
+- Paleta pastel: lavanda, rosa, roxo, amarelo, menta, azul bebê
+- Responsivo: breakpoints 1200px e 768px
 
-## Estrutura de Pastas
+## Estrutura
 
 ```
 src/
-├── App.tsx                      # Componente raiz (Router + QueryClient)
-├── main.tsx                     # Entry point
+├── App.tsx                # Router + QueryClientProvider + layout
+├── main.tsx               # Entry point
 ├── api/
-│   ├── client.ts                # Axios client compartilhado
-│   └── books.ts                 # Funções de API (fetchBooks, etc.)
+│   ├── client.ts          # Axios com baseURL via VITE_API_URL
+│   └── books.ts           # fetchBooks, fetchBookById, fetchBookStats, fetchBookOptions
 ├── components/
-│   ├── Sidebar.tsx              # Navegação lateral
-│   ├── SearchBar.tsx            # Barra de busca
-│   ├── StatCard.tsx             # Card de métrica
-│   ├── StatusChart.tsx          # Gráfico de pizza - status
-│   ├── RatingChart.tsx          # Gráfico de barras - avaliações
-│   └── YearlyChart.tsx          # Gráfico de linha - livros por ano
+│   ├── Sidebar.tsx        # Navegação lateral fixa
+│   ├── SearchBar.tsx      # Input de busca
+│   ├── StatCard.tsx       # Card de métrica
+│   ├── StatusChart.tsx    # Gráfico de pizza (status)
+│   ├── RatingChart.tsx    # Gráfico de barras (notas)
+│   └── YearlyChart.tsx    # Gráfico de linhas (livros por ano)
 ├── hooks/
-│   └── index.ts                 # Custom hooks (useBooks, useBookStats, etc.)
+│   └── index.ts           # useBooks, useBookById, useBookStats, useBookOptions
 ├── pages/
-│   ├── Dashboard.tsx            # Página principal
-│   ├── Top10.tsx                # Top 10 rankings
-│   ├── Series.tsx               # Séries literárias
-│   ├── Listing.tsx              # Listagem de livros
-│   └── BookDetail.tsx           # Detalhes do livro
+│   ├── Dashboard.tsx      # Métricas + gráficos
+│   ├── Top10.tsx          # Rankings
+│   ├── Series.tsx         # Séries literárias
+│   ├── Quest.tsx          # Missões
+│   ├── Listing.tsx        # Grid de capas com filtro
+│   └── BookDetail.tsx     # Detalhe do livro
 ├── types/
-│   └── book.ts                  # Interfaces TypeScript (Book, BookStats, etc.)
+│   └── book.ts            # Book, BookStats, BookOptions, BooksResponse
 ├── styles/
-│   ├── global.css               # Estilos globais
+│   ├── global.css         # CSS variables, layout, responsivo
 │   ├── BookDetail.css
 │   ├── Listing.css
 │   ├── Series.css
+│   ├── Quest.css
 │   └── Top10.css
-└── assets/                      # Imagens e ícones
+└── assets/                # PNGs (check, books, book, list, hero)
 ```
 
 ## Instalação
@@ -94,87 +102,105 @@ npm run dev
 
 Acesse `http://localhost:5173`
 
-## Scripts
+### Variáveis de Ambiente
+
+```env
+VITE_API_URL=
+```
 
 | Comando | Descrição |
 |---------|-----------|
-| `npm run dev` | Inicia servidor de desenvolvimento |
+| `npm run dev` | Servidor de desenvolvimento |
 | `npm run build` | Type check + build de produção |
-| `npm run lint` | Verifica código com ESLint |
+| `npm run lint` | ESLint |
 | `npm run preview` | Preview do build |
 
-## Variáveis de Ambiente
-
-```env
-VITE_API_URL=http://localhost:3000
-```
-
 ## Arquitetura
-
-A aplicação segue a arquitetura **React SPA com TanStack Query**:
-
-- **Componentes funcionais** com TypeScript
-- **TanStack Query** para data fetching com cache automático (staleTime configurado)
-- **React Router** para navegação client-side
-- **API layer** em `api/` com Axios, separada por recurso
-- **Custom hooks** em `hooks/` encapsulando queries do TanStack Query
-- **Tipos compartilhados** em `types/`
-- **CSS puro** componentizado em `styles/`
 
 ### Fluxo de dados
 
 ```
-Pages → Hooks (TanStack Query) → api/ (Axios) → Backend API → Notion CMS
+Pages → Hooks (TanStack Query) → api/ (Axios) → Backend API (backend__final) → Notion CMS
 ```
 
-### Cache strategy
+### Cache strategy (TanStack Query)
 
-| Hook | Cache (staleTime) |
-|------|-------------------|
-| `useBooks` | 5 minutos |
-| `useBookOptions` | 30 minutos |
-| `useBookById` | 5 minutos |
-| `useBookStats` | 5 minutos |
+| Hook | staleTime | Uso |
+|------|-----------|-----|
+| `useBooks` | 5 min | Lista completa de livros |
+| `useBookOptions` | 30 min | Opções de filtro (gêneros, notas, etc.) |
+| `useBookById` | 5 min | Detalhe do livro (disabled se id vazio) |
+| `useBookStats` | 5 min | Estatísticas computadas |
 
-## Consumo de API
+### Endpoints consumidos (backend__final)
 
-A aplicação consome os seguintes endpoints do backend `backend__final`:
+| Endpoint | Retorno |
+|----------|---------|
+| `GET /api/books/all` | `{ data: Book[], total: number }` |
+| `GET /api/books/options` | `BookOptions` (selects do schema Notion) |
+| `GET /api/books/stats` | `BookStats` (totais, médias, distribuições) |
+| `GET /api/books/:id` | `Book` (livro individual) |
 
-| Endpoint | Uso |
-|----------|-----|
-| `GET /api/books/all` | Todos os livros (sem cache por página) |
-| `GET /api/books/options` | Opções de filtro |
-| `GET /api/books/stats` | Estatísticas computadas |
-| `GET /api/books/:id` | Detalhe do livro |
+### Tipos principais
 
-## Responsividade
+```ts
+interface Book {
+  id: string;
+  name: string;
+  author: string[];
+  status?: string | null;
+  rate?: string | null;
+  wasReadIn?: string[];
+  genres?: string[];
+  totalPages?: number | null;
+  currentlyOn?: number | null;
+  bookSeries?: string | null;
+  type?: string[];
+  cover?: string[];
+  quest?: string[];
+  // + literaryAtlas, iHaveCopy, firstPublished, publishedBy, startEnd, progress
+}
 
-Layout responsivo com sidebar que se adapta em mobile. A grade de cards e gráficos reorganiza colunas conforme o viewport.
+interface BookStats {
+  totalBooks: number;
+  currentlyReading: Book[];
+  statusCounts: Record<string, number>;
+  totalPagesRead: number;
+  averagePagesRead: number;
+  averageRating: string;
+  ratingDistribution: Record<string, number>;
+  authorsMostRead: { name: string; count: number }[];
+  genresDistribution: { name: string; count: number }[];
+  statsByYear: { year: number; count: number }[];
+  booksReadInYear: number;
+  totalPagesReadInYear: number;
+}
+```
 
-## Acessibilidade
+## Design Decisions
 
-- Contraste adequado
-- Foco visível
-- Textos alternativos em ícones e imagens
-- Navegação por teclado via links do React Router
+- **CSS puro** em vez de CSS-in-JS ou Tailwind — cada página tem seu arquivo `.css` importado, com variáveis globais no `global.css`
+- **TanStack Query** para cache automático com staleTime — evita refetch desnecessário e garante dados frescos nas abas
+- **Agregação client-side** no Top10, Series e Quests — os dados vêm todos de uma vez via `GET /api/books/all` e o frontend faz reduce/filter
+- **MUI X-Charts** para gráficos — PieChart, BarChart e LineChart com integração ao ecossistema MUI
+- **estados de loading/error** apenas no Dashboard e BookDetail — Listing e Top10 ainda não tratam (pendente)
 
 ## Deploy
 
-A aplicação pode ser deployada na **Vercel** como SPA:
-
 ```bash
-# Conecte o repositório na Vercel
-# Configure VITE_API_URL como variável de ambiente
-# O build é feito com: npm run build
+# Vercel SPA
+# Conecte o repositório, configure VITE_API_URL, build com npm run build
 ```
 
 ## Melhorias Futuras
 
-- [ ] Filtros avançados na listagem
-- [ ] Comparativo anual de leitura
-- [ ] Metas de leitura com progresso
-- [ ] Exportação de dados (PDF/CSV)
+- [ ] Busca funcional (filtro client-side com debounce)
+- [ ] Loading/error states em Listing e Top10
+- [ ] Rota 404 e Error Boundary
+- [ ] Lazy loading de páginas
+- [ ] Componente genérico BookGroupCard (unificar Series/Quest)
+- [ ] Gráficos responsivos (width dinâmico)
+- [ ] Path alias `@/`
 - [ ] Dark mode
-- [ ] Testes automatizados
-- [ ] Responsividade mobile aprimorada
-- [ ] Animações de transição entre páginas
+- [ ] Metas de leitura
+- [ ] Testes automatizados (Vitest + testing-library)

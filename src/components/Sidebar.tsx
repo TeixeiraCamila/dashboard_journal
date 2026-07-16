@@ -2,13 +2,26 @@ import { Link, useLocation } from "react-router-dom";
 
 import { SearchBar } from "./SearchBar";
 
-// Array de rotas centralizado: fonte única para os links do menu lateral
+import ViewList from "@mui/icons-material/ViewList";
+import BarChart from "@mui/icons-material/BarChart";
+import EmojiEvents from "@mui/icons-material/EmojiEvents";
+import LibraryBooks from "@mui/icons-material/LibraryBooks";
+import SportsEsports from "@mui/icons-material/SportsEsports";
+
+const iconMap: Record<string, React.ReactNode> = {
+  "/": <ViewList />,
+  "/dashboard": <BarChart />,
+  "/top10": <EmojiEvents />,
+  "/series": <LibraryBooks />,
+  "/quests": <SportsEsports />,
+};
+
 const navItems = [
-  { path: "/", label: "Listagem", icon: "📋" },
-  { path: "/dashboard", label: "Dashboard", icon: "📊" },
-  { path: "/top10", label: "Top 10", icon: "🏆" },
-  { path: "/series", label: "Minhas Séries", icon: "📚" },
-  { path: "/quests", label: "Minhas Missões", icon: "🎯" },
+  { path: "/", label: "Listagem" },
+  { path: "/dashboard", label: "Dashboard" },
+  { path: "/top10", label: "Top 10" },
+  { path: "/series", label: "Minhas Séries" },
+  { path: "/quests", label: "Minhas Missões" },
 ];
 
 // Sidebar fixa com navegação e busca. useLocation() determina o link ativo (classe --active)
@@ -18,8 +31,7 @@ export function Sidebar() {
   return (
     <aside className="sidebar">
       <div className="sidebar__header">
-        <span className="sidebar__icon">📖</span>
-        <h1 className="sidebar__title">Book Journal</h1>
+        <h1 className="sidebar__title">Dashboard</h1>
       </div>
       <div className="sidebar__search">
         <SearchBar onSearch={(term) => console.log(term)} />
@@ -33,6 +45,7 @@ export function Sidebar() {
               to={item.path}
               className={`sidebar__link ${isActive ? "sidebar__link--active" : ""}`}
             >
+              {iconMap[item.path]}
               <span className="sidebar__link-label">{item.label}</span>
             </Link>
           );

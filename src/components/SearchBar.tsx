@@ -1,6 +1,7 @@
 
-import './SearchBar.css'
+import "./SearchBar.css";
 import { useState, type KeyboardEvent } from "react";
+import Search from "@mui/icons-material/Search";
 
 // Propriedade: callback disparada ao buscar
 interface SearchBarProps {
@@ -38,7 +39,7 @@ export function SearchBar({ onSearch }: SearchBarProps) {
         onClick={handleSearch}
         type="button"
       >
-        🔍
+        <Search />
       </button>
     </div>
   );

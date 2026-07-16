@@ -71,13 +71,10 @@ body {
 .sidebar__header {
   display: flex;
   align-items: center;
-  gap: 12px;
+  justify-content: center;
   margin-bottom: 32px;
 }
 
-.sidebar__icon {
-  font-size: 1.5rem;
-}
 
 .sidebar__nav {
   display: flex;
