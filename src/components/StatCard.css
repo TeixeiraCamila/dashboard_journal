@@ -10,8 +10,15 @@
   align-items: center;
   align-items: center;
   justify-content: space-between;
-  padding: 30px 0;
-  max-width: 150px;
+  max-width: 200px;
+  background-image: url('https://i.pinimg.com/736x/66/06/e2/6606e2fa0862d324ff3ae05fff2b817f.jpg');
+  border-radius: var(--radius-md);
+  box-shadow: var(--shadow-3d);
+  background-repeat: no-repeat;
+  background-origin: content-box;
+  background-size: auto;
+  border-left: 5px solid ;
+  padding: 1rem ;
 }
 
 .stat-card:hover {
@@ -36,17 +43,15 @@
 }
 
 .stat-card__label {
-  opacity: 0.7;
   font-size: 25px;
-  opacity: 0.7;
   margin-bottom: 4px;
   color: var(--color-surface);
   text-align: center;
-  padding: 0 1rem;
 }
 
 .stat-card__value {
   font-size: 28px;
   font-weight: 700;
   color: var(--color-surface);
+  padding: .75rem 1rem;
 }
