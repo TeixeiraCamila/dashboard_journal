@@ -60,3 +60,13 @@ export interface BooksResponse {
   data: Book[];
   total: number;
 }
+
+// Resposta paginada da listagem (rota GET /api/books)
+export interface BooksPaginatedResponse {
+  data: Book[];
+  pagination: {
+    pageSize: number;
+    hasMore: boolean;
+    nextCursor: string | null;
+  };
+}

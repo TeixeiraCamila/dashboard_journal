@@ -1,30 +1,57 @@
 import "../styles/Listing.css";
 
-import { useBooks, useBookOptions } from "../hooks";
+import { useBookOptions, useBooksInfinite } from "../hooks";
 import { Link } from "react-router-dom";
-import React from "react";
+import React, { useEffect, useRef } from "react";
 
-// Listing: grid de capas com filtro por gênero (Tag). Estado local com useState.
-// useBooks + useBookOptions alimentam o grid e as tags de filtro.
+// Listing: grid de capas com scroll infinito e filtro por gênero (Tag).
+// useBooksInfinite + IntersectionObserver carregam 50 livros por página.
 export function Listing() {
   const [selectedGenre, setSelectedGenre] = React.useState("");
 
-  const { data } = useBooks();
+  const { data, fetchNextPage, hasNextPage, isFetchingNextPage, isLoading } =
+    useBooksInfinite(50);
   const { data: options } = useBookOptions();
-  const books = data?.data || [];
   const genres = options?.Tags || [];
 
-  const readBooks = books.filter((b) => b.status === "Read");
+  // Acumula todas as páginas em um array único
+  const books = data?.pages.flatMap((p) => p.data) ?? [];
+
+  // Sentinel: elemento no fim do grid que dispara fetchNextPage
+  const sentinelRef = useRef<HTMLDivElement | null>(null);
+
+  useEffect(() => {
+    if (!hasNextPage || isFetchingNextPage) return;
+
+    const observer = new IntersectionObserver(
+      (entries) => {
+        if (entries[0].isIntersecting) {
+          fetchNextPage();
+        }
+      },
+      { rootMargin: "200px" },
+    );
+
+    if (sentinelRef.current) {
+      observer.observe(sentinelRef.current);
+    }
+
+    return () => observer.disconnect();
+  }, [hasNextPage, isFetchingNextPage, fetchNextPage]);
 
   // Toggle de gênero: clica no mesmo gênero para limpar o filtro
   const handleGenreClick = (genre: string) => {
     setSelectedGenre((prevGenre) => (prevGenre === genre ? "" : genre));
   };
 
-  // Filtragem client-side; livros marcados como "Read" apenas
+  // Filtragem client-side nos dados já carregados
   const filteredBooks = selectedGenre
-    ? readBooks.filter((book) => book.genres?.includes(selectedGenre))
-    : readBooks;
+    ? books.filter((book) => book.genres?.includes(selectedGenre))
+    : books;
+
+  if (isLoading) {
+    return <div className="loading">Carregando livros...</div>;
+  }
 
   return (
     <>
@@ -65,6 +92,15 @@ export function Listing() {
           </div>
         ))}
       </div>
+      {/* Sentinel: invisível, dispara fetchNextPage ao entrar na viewport */}
+      <div
+        ref={sentinelRef}
+        className="listing-sentinel"
+        style={{ height: 1 }}
+      />
+      {isFetchingNextPage && (
+        <div className="loading">Carregando mais livros...</div>
+      )}
     </>
   );
 }

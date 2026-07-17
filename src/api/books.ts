@@ -1,9 +1,19 @@
 import { apiClient } from "./client";
-import type { Book, BookOptions, BooksResponse, BookStats } from "../types/book";
+import type { Book, BookOptions, BooksPaginatedResponse, BooksResponse, BookStats } from "../types/book";
 
 // Função de busca: tipada com BooksResponse para garantir consistência dos dados
 export const fetchBooks = async (): Promise<BooksResponse> => {
   const { data } = await apiClient.get("/api/books/all");
+  return data;
+};
+
+// Busca paginada via GET /api/books com suporte a cursor
+export const fetchBooksPaginated = async (params: {
+  pageSize?: number;
+  startCursor?: string;
+  status?: string;
+}): Promise<BooksPaginatedResponse> => {
+  const { data } = await apiClient.get("/api/books", { params });
   return data;
 };
 
